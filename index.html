@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="pl" ng-app="walletApp">
+<html lang="pl" ng-app="stocksApp">
 <head>
     <meta charset="utf-8">
     <title>stocks-app</title>
@@ -10,20 +10,28 @@
 
     <!-- vendor -->
     <script src="vendor/angular/angular.min.js"></script>
-
     <script src="vendor/lodash/lodash.js"></script>
 
     <!-- app -->
     <script src="scripts/stocksApp.js"></script>
     
     <!-- controllers -->
+    <script src="scripts/controllers/mainController.js"></script>
 
     <!-- filters -->
+
+    <!-- services -->
+    <script src="scripts/services/stocksApiService.js"></script>
 
 </head>
 
 <body ng-controller="MainController">
 
+<ul>
+    <li ng-repeat=" stock in stockList ">
+        {{ stock }}
+    </li>
+</ul>
 
 
 </body>

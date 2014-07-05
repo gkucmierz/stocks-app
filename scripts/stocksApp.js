@@ -1,9 +1,6 @@
 'use strict';
 
-angular.module('stocksApp', [
-    'pascalprecht.translate',
-    'ngStorage'
-]);
+angular.module('stocksApp', []);
 
 angular.module('stocksApp')
 .config(function($httpProvider) {

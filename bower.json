@@ -1,0 +1,8 @@
+{
+  "name": "stocks-app",
+  "dependencies": {
+    "jquery": "2.1.0",
+    "angular": "1.2.2",
+    "lodash": "1.2.0"
+  }
+}

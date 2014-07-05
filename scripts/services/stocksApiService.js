@@ -11,8 +11,9 @@ angular.module('stocksApp')
     return {
         getStocksList: function() {
             var deferred = $q.defer();
-            var stocksListUrl = proxy('www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download');
-            
+            // var stocksListUrl = proxy('www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download');
+            var stocksListUrl = 'cache/stock-list.csv';
+
             $http({method: 'GET', url: stocksListUrl})
             .success(function(data) {
                 var lines = data.split(/\n/).splice(1);

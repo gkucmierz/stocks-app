@@ -9,6 +9,9 @@ angular.module('stocksApp')
         stock.selected = !stock.selected;
     };
 
+    StocksApiService.getHistoricalData('GOOG', '2009-12-14').then(function(data) {
+        console.log(data);
+    });
 
     // init
     StocksApiService.getStocksList().then(function(data) {

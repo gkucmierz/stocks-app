@@ -8,19 +8,21 @@ angular.module('stocksApp')
         return corsProxy + url;
     };
 
-    // var yql = 'select * from yahoo.finance.historicaldata where symbol in ("GOOG") and startDate = "2012-09-13" and endDate = "2012-09-13"';
-    // var yql = 'select * from yahoo.finance.industry';
-    var yql = 'select * from yahoo.finance.quotes where symbol in ("BHP.AX") and startDate = "2014-01-01" and endDate = "2014-06-16"';
-    yqlService.query(yql).then(function(data) {
-        console.log(data.query);
-        console.log('count: ' + data.query.count);
-    });
+    var data2url = function(data, firstChar) {
+        firstChar = firstChar || '?';
+        var res = [];
+        _.each(data, function(value, key) {
+            res.push(key + '=' + value);
+        });
+        return firstChar + res.join('&amp;');
+    };
 
     return {
         getStocksList: function() {
             var deferred = $q.defer();
             // var stocksListUrl = proxy('www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download');
             var stocksListUrl = 'cache/stock-list.csv';
+            proxy('');
 
             $http({method: 'GET', url: stocksListUrl})
             .success(function(data) {
@@ -51,6 +53,31 @@ angular.module('stocksApp')
             // e = toDay (two digits)
             // f = toYear
             // g = d for day, m for month, y for yearly
+            fromDate = moment(fromDate);
+            toDate = moment(toDate);
+            var getUrl = 'ichart.finance.yahoo.com/table.csv';
+            var data = {
+                s: stockCode,
+                a: parseInt(fromDate.format('MM')) - 1,
+                b: fromDate.format('DD'),
+                c: fromDate.format('YYYY'),
+                d: parseInt(toDate.format('MM')) - 1,
+                e: toDate.format('DD'),
+                f: toDate.format('YYYY'),
+                g: 'd'
+            };
+            
+            var deferred = $q.defer();
+
+            $http({method: 'GET', url: proxy(getUrl + data2url(data)) })
+            .success(function(data) {
+                deferred.resolve(data);
+            })
+            .error(function(err) {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
         }
     };
 });

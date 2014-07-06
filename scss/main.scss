@@ -1,8 +1,20 @@
 
 
 .stock-list {
+    $stockHeight: 25px;
+    $visibleStocks: 16;
+
+    background-color: #eee;
+    height: $stockHeight * $visibleStocks;
+    overflow: scroll;
+    width: 120px;
+    list-style-type: none;
+    padding-left: 0;
 
     li {
+        line-height: $stockHeight;
+        text-align: center;
+
         &:hover {
             background-color: #08f;
         }

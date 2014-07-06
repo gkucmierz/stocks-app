@@ -21,7 +21,9 @@ angular.module('stocksApp')
             .success(function(data) {
                 var lines = data.split(/\n/).splice(1);
                 var parsed = _.map(lines, function(row) {
-                    return row.split(/,/)[0];
+                    return {
+                        code: row.split(/,/)[0].replace(/\"/g, '')
+                    };
                 });
                 deferred.resolve(parsed);
             })

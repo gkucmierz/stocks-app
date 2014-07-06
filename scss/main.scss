@@ -1,9 +1,9 @@
 
 $colorSelectedStock: #0b4;
-$colorStock: #eee;
-$darkenPrecentage: 8%;
 
 .stock-list {
+    $colorStock: #eee;
+    $darkenPrecentage: 8%;
     $stockHeight: 25px;
     $visibleStocks: 16;
 
@@ -28,5 +28,15 @@ $darkenPrecentage: 8%;
                 background-color: darken( $colorSelectedStock, $darkenPrecentage );
             }
         }
+    }
+}
+
+.selected-stocks {
+    & > span {
+        margin-left: 5px;
+        padding: 4px 10px;
+        background-color: lighten($colorSelectedStock, 60%);
+        border: 1px solid darken($colorSelectedStock, 20%);
+        @include build-prefix-values(border-radius, 8px);
     }
 }

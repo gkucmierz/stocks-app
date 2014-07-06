@@ -41,7 +41,7 @@ filter: <input type="text" ng-model="filterStocks" />
         ng-click="selectStock(stock)"
         ng-class="{ selected: stock.selected }"
     >
-        {{ stock.code }}
+        {{ stock.Symbol }}
     </li>
 </ul>
 
@@ -50,7 +50,7 @@ filter: <input type="text" ng-model="filterStocks" />
     <span
         ng-repeat=" stock in stockList | filter: {selected:true} "
     >
-        {{ stock.code }}
+        {{ stock.Symbol }}
         <span class="close" ng-click=" selectStock(stock) ">X</span>
     </span>
 </div>

@@ -12,7 +12,7 @@ angular.module('stocksApp')
         link: function($scope, element) {
 
             $scope.$watch('data', function(data) {
-                console.log(data);
+                // console.log(data);
             });
             // $('#container').highcharts('StockChart', {
                         

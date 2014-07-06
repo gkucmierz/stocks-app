@@ -7,8 +7,7 @@ angular.module('stocksApp')
 
 
     var loadStockData = function(stock) {
-        StocksApiService.getHistoricalData(stock.code, '1996-12-14').then(function(data) {
-            console.log(data);
+        StocksApiService.getHistoricalData(stock.Symbol, '1970-01-01').then(function(data) {
             $scope.stockData = data.split(/\n/);
         });
     };
@@ -24,6 +23,7 @@ angular.module('stocksApp')
     // init
     StocksApiService.getStocksList().then(function(data) {
         $scope.stockList = data;
+        // console.log(data);
     });
 
 });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('stocksApp')
-.service('StocksApiService', function($http, $q) {
+.service('StocksApiService', function($http, $q, csvService) {
 
     var proxy = function(url) {
         var corsProxy = 'http://www.corsproxy.com/';
@@ -26,16 +26,12 @@ angular.module('stocksApp')
 
             $http({method: 'GET', url: stocksListUrl})
             .success(function(data) {
-                var lines = data.split(/\n/).splice(1);
-                var parsed = _.map(lines, function(row) {
-                    return {
-                        code: row.split(/,/)[0].replace(/\"/g, '')
-                    };
+                var jsonData = csvService.parse(data, {
+                    everyCell: function() {
+                        return (this+'').replace(/\"/g, '');
+                    }
                 });
-                var filtered = _.filter(parsed, function(row) {
-                    return row.code !== '';
-                });
-                deferred.resolve(filtered);
+                deferred.resolve(jsonData);
             })
             .error(function(err) {
                 deferred.reject(err);

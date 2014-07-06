@@ -4,6 +4,7 @@
     "jquery": "2.1.0",
     "angular": "1.2.19",
     "momentjs": "2.7.0",
-    "lodash": "1.2.0"
+    "lodash": "1.2.0",
+    "highmaps-release": "1.0.3"
   }
 }

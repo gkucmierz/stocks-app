@@ -7,6 +7,7 @@ $colorSelectedStock: #0b4;
     $stockHeight: 25px;
     $visibleStocks: 16;
 
+    background-color: lighten( $colorStock, 5% );
     height: $stockHeight * $visibleStocks;
     overflow: scroll;
     width: 120px;

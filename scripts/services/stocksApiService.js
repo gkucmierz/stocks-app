@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('stocksApp')
-.service('StocksApiService', function($http, $q, yqlService) {
+.service('StocksApiService', function($http, $q) {
 
     var proxy = function(url) {
         var corsProxy = 'http://www.corsproxy.com/';

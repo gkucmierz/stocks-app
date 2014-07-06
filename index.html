@@ -47,6 +47,7 @@ filter: <input type="text" ng-model="filterStocks" />
         ng-repeat=" stock in stockList | filter: {selected:true} "
     >
         {{ stock.code }}
+        <span class="close" ng-click=" selectStock(stock) ">X</span>
     </span>
 </div>
 

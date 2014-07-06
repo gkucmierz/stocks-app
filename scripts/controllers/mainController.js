@@ -5,16 +5,21 @@ angular.module('stocksApp')
 
     $scope.stockList = [];
 
-    $scope.selectStock = function(stock) {
-        stock.selected = !stock.selected;
 
+    var loadStockData = function(stock) {
         StocksApiService.getHistoricalData(stock.code, '1996-12-14').then(function(data) {
             console.log(data);
             $scope.stockData = data.split(/\n/);
         });
     };
 
-    
+    $scope.selectStock = function(stock) {
+        stock.selected = !stock.selected;
+
+        if (stock.selected) {
+            loadStockData(stock);
+        }
+    };
 
     // init
     StocksApiService.getStocksList().then(function(data) {

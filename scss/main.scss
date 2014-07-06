@@ -38,5 +38,16 @@ $colorSelectedStock: #0b4;
         background-color: lighten($colorSelectedStock, 60%);
         border: 1px solid darken($colorSelectedStock, 20%);
         @include build-prefix-values(border-radius, 8px);
+
+        .close {
+            font-size: 70%;
+            vertical-align: top;
+            cursor: pointer;
+
+            &:hover {
+                color: #f00;
+                background-color: lighten(#f00, 50%);
+            }
+        }
     }
 }

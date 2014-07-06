@@ -68,7 +68,9 @@ angular.module('stocksApp')
 
             $http({method: 'GET', url: proxy(getUrl + data2url(data)) })
             .success(function(data) {
-                deferred.resolve(data);
+                var jsonData = csvService.parse(data);
+                
+                deferred.resolve(jsonData);
             })
             .error(function(err) {
                 deferred.reject(err);

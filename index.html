@@ -59,7 +59,8 @@ filter: <input type="text" ng-model="filterStocks" />
 
 <ul>
     <li ng-repeat=" row in stockData ">
-        {{ row }}
+        {{ row['Date'] }}
+        {{ row['Adj Close'] }}
     </li>
 </ul>
 

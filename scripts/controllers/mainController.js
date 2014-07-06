@@ -8,7 +8,7 @@ angular.module('stocksApp')
 
     var loadStockData = function(stock) {
         StocksApiService.getHistoricalData(stock.Symbol, '1970-01-01').then(function(data) {
-            $scope.stockData = data.split(/\n/);
+            $scope.stockData = data;
         });
     };
 

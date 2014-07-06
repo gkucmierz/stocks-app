@@ -8,6 +8,8 @@ angular.module('stocksApp')
         return corsProxy + url;
     };
 
+    var yql = 'select * from yahoo.finance.historicaldata where symbol in ("YHOO","AAPL","GOOG","MSFT") and startDate = "2012-09-13" and endDate = "2012-09-13"';
+
     return {
         getStocksList: function() {
             var deferred = $q.defer();

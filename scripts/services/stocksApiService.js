@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('stocksApp')
-.service('StocksApiService', function($http, $q) {
+.service('StocksApiService', function($http, $q, yqlService) {
 
     var proxy = function(url) {
         var corsProxy = 'http://www.corsproxy.com/';
@@ -9,6 +9,7 @@ angular.module('stocksApp')
     };
 
     var yql = 'select * from yahoo.finance.historicaldata where symbol in ("YHOO","AAPL","GOOG","MSFT") and startDate = "2012-09-13" and endDate = "2012-09-13"';
+    // yqlService.query(yql);
 
     return {
         getStocksList: function() {

@@ -64,7 +64,8 @@ angular.module('stocksApp')
                 d: parseInt(toDate.format('MM')) - 1,
                 e: toDate.format('DD'),
                 f: toDate.format('YYYY'),
-                g: 'd'
+                g: 'd',
+                ignore: '.csv'
             };
             
             var deferred = $q.defer();

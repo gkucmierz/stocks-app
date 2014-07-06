@@ -7,11 +7,14 @@ angular.module('stocksApp')
 
     $scope.selectStock = function(stock) {
         stock.selected = !stock.selected;
+
+        StocksApiService.getHistoricalData(stock.code, '1996-12-14').then(function(data) {
+            console.log(data);
+            $scope.stockData = data.split(/\n/);
+        });
     };
 
-    StocksApiService.getHistoricalData('GOOG', '2009-12-14').then(function(data) {
-        console.log(data);
-    });
+    
 
     // init
     StocksApiService.getStocksList().then(function(data) {

@@ -2,14 +2,15 @@
 
 angular.module('stocksApp')
 .service('yqlService', function($http, $q) {
-    var yqlUrl = 'http://query.yahooapis.com/v1/public/yql';
+    var yqlUrl = 'https://query.yahooapis.com/v1/public/yql';
 
     return {
         query: function(query) {
             var deferred = $q.defer();
             var data = encodeURIComponent(query);
-            var format = '&format=json&diagnostics=true&env=http://datatables.org/alltables.env'
-            var url = [yqlUrl, '?q=', data, format].join('');
+
+            var additionalParams = '&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=';
+            var url = [yqlUrl, '?q=', data, additionalParams].join('');
 
             $http({method: 'GET', url: url})
             .success(function(data) {

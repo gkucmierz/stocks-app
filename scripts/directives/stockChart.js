@@ -5,12 +5,15 @@ angular.module('stocksApp')
     return {
         restrict: 'A',
         scope: {
-            action: '='
+            data: '='
         },
-        // templateUrl: PathGeneratorService.getThemePath('views/portfolio/fields/action-checkbox.html'),
-        controller: function($rootScope, $scope) {
+        controller: function() {
         },
         link: function($scope, element) {
+
+            $scope.$watch('data', function(data) {
+                console.log(data);
+            });
             // $('#container').highcharts('StockChart', {
                         
 

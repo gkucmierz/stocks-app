@@ -25,7 +25,10 @@ angular.module('stocksApp')
                         code: row.split(/,/)[0].replace(/\"/g, '')
                     };
                 });
-                deferred.resolve(parsed);
+                var filtered = _.filter(parsed, function(row) {
+                    return row.code !== '';
+                });
+                deferred.resolve(filtered);
             })
             .error(function(err) {
                 deferred.reject(err);

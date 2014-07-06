@@ -5,6 +5,12 @@ angular.module('stocksApp')
 
     $scope.stockList = [];
 
+    $scope.selectStock = function(stock) {
+        stock.selected = !stock.selected;
+    };
+
+
+    // init
     StocksApiService.getStocksList().then(function(data) {
         $scope.stockList = data;
     });

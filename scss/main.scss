@@ -16,7 +16,14 @@
         text-align: center;
 
         &:hover {
-            background-color: #08f;
+            background-color: #ddd;
+        }
+
+        &.selected {
+            background-color: #0b4;
+            &:hover {
+                background-color: #0a3;
+            }
         }
     }
 }

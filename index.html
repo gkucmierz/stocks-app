@@ -29,16 +29,7 @@
 
 <body ng-controller="MainController">
 
-<input type="text" ng-model="filterStocks" />
-
-<div>
-    selected stocks:
-    <span
-        ng-repeat=" stock in stockList | filter: {selected:true} "
-    >
-        {{ stock.code }}
-    </span>
-</div>
+filter: <input type="text" ng-model="filterStocks" />
 
 <ul class="stock-list">
     <li
@@ -49,6 +40,15 @@
         {{ stock.code }}
     </li>
 </ul>
+
+<div>
+    selected stocks:
+    <span
+        ng-repeat=" stock in stockList | filter: {selected:true} "
+    >
+        {{ stock.code }}
+    </span>
+</div>
 
 <ul>
     <li ng-repeat=" row in stockData ">

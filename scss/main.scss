@@ -1,10 +1,12 @@
 
+$colorSelectedStock: #0b4;
+$colorStock: #eee;
+$darkenPrecentage: 8%;
 
 .stock-list {
     $stockHeight: 25px;
     $visibleStocks: 16;
 
-    background-color: #eee;
     height: $stockHeight * $visibleStocks;
     overflow: scroll;
     width: 120px;
@@ -14,15 +16,16 @@
     li {
         line-height: $stockHeight;
         text-align: center;
+        background-color: $colorStock;
 
         &:hover {
-            background-color: #ddd;
+            background-color: darken( $colorStock, $darkenPrecentage );
         }
 
         &.selected {
-            background-color: #0b4;
+            background-color: $colorSelectedStock;
             &:hover {
-                background-color: #0a3;
+                background-color: darken( $colorSelectedStock, $darkenPrecentage );
             }
         }
     }

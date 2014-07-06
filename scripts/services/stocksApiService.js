@@ -8,8 +8,11 @@ angular.module('stocksApp')
         return corsProxy + url;
     };
 
-    var yql = 'select * from yahoo.finance.historicaldata where symbol in ("YHOO","AAPL","GOOG","MSFT") and startDate = "2012-09-13" and endDate = "2012-09-13"';
-    // yqlService.query(yql);
+    // var yql = 'select * from yahoo.finance.historicaldata where symbol in ("GOOG") and startDate = "2012-09-13" and endDate = "2012-09-13"';
+    var yql = 'select * from yahoo.finance.industry';
+    yqlService.query(yql).then(function(data) {
+        console.log(data);
+    });
 
     return {
         getStocksList: function() {

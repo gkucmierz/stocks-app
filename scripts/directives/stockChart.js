@@ -2,6 +2,16 @@
 
 angular.module('stocksApp')
 .directive('stockChart', function() {
+
+    var parseData = function(data) {
+        return _.map(data, function(single) {
+            return [
+                moment(single['Date']) + 0,
+                parseFloat(single['Adj Close'])
+            ];
+        });
+    };
+
     return {
         restrict: 'A',
         scope: {
@@ -14,7 +24,9 @@ angular.module('stocksApp')
             $scope.$watch('data', function(data) {
                 if (typeof data === 'undefined') return;
 
-                element.highcharts('StockChart', {
+                var parsedData = parseData(data);
+
+                $('#container').highcharts('StockChart', {
                     rangeSelector : {
                         selected : 1,
                         inputEnabled: true//element.width() > 480

@@ -26,6 +26,8 @@ angular.module('stocksApp')
 
                 var parsedData = parseData(data);
 
+                // console.log($('#container').highcharts);
+
                 $('#container').highcharts('StockChart', {
                     rangeSelector : {
                         selected : 1,

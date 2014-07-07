@@ -5,10 +5,10 @@ angular.module('stocksApp')
 
     var parseData = function(data) {
         return _.map(data, function(single) {
-            return [
-                moment(single['Date']) + 0,
-                parseFloat(single['Adj Close'])
-            ];
+            return {
+                x: moment(single['Date']) + 0,
+                y: parseFloat(single['Adj Close'])
+            };
         });
     };
 
@@ -26,25 +26,25 @@ angular.module('stocksApp')
 
                 var parsedData = parseData(data);
 
-                // console.log($('#container').highcharts);
+                // return;
 
                 $('#container').highcharts('StockChart', {
-                    rangeSelector : {
-                        selected : 1,
-                        inputEnabled: true//element.width() > 480
-                    },
+                    // rangeSelector : {
+                    //     selected : 1,
+                    //     inputEnabled: $('#container').width() > 480
+                    // },
 
-                    title : {
-                        text : 'AAPL Stock Price'
-                    },
+                    // title : {
+                    //     text : 'AAPL Stock Price'
+                    // },
                     
-                    series : [{
-                        name : 'AAPL',
-                        data : data,
-                        tooltip: {
-                            valueDecimals: 2
-                        }
-                    }]
+                    // series : [{
+                        // name : 'AAPL',
+                        // data: parsedData,
+                        // tooltip: {
+                            // valueDecimals: 2
+                        // }
+                    // }]
                 });
             });
             

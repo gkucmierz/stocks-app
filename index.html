@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- vendor -->
-    <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/lodash/lodash.js"></script>
     <script src="vendor/momentjs/min/moment.min.js"></script>
     <script src="vendor/highmaps-release/highcharts.js"></script>
+    <script src="vendor/highmaps-release/modules/exporting.js"></script>
 
     <!-- app -->
     <script src="scripts/stocksApp.js"></script>
@@ -38,7 +39,7 @@ filter: <input type="text" ng-model="filterStocks" />
 
 <ul class="stock-list">
     <li
-        ng-repeat=" stock in stockList | filter: filterStocks "
+        ng-repeat=" stock in stockList | filter: {Symbol: filterStocks} "
         ng-click="selectStock(stock)"
         ng-class="{ selected: stock.selected }"
     >

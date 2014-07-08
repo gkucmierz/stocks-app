@@ -4,12 +4,17 @@ angular.module('stocksApp')
 .controller('MainController', function($scope, StocksApiService) {
 
     $scope.stockList = [];
-
     $scope.selectedStocks = [];
+
+    var invokeCollectionWatchers = function(obj) {
+        obj.push('');
+        obj.pop();
+    };
 
     var loadStockData = function(selectedStock) {
         StocksApiService.getHistoricalData(selectedStock.info.Symbol, '1970-01-01').then(function(data) {
             selectedStock.data = data;
+            invokeCollectionWatchers($scope.selectedStocks);
         });
     };
 

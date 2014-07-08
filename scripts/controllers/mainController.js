@@ -5,6 +5,7 @@ angular.module('stocksApp')
 
     $scope.stockList = [];
 
+    $scope.selectedStocks = [];
 
     var loadStockData = function(stock) {
         StocksApiService.getHistoricalData(stock.Symbol, '1970-01-01').then(function(data) {
@@ -17,6 +18,14 @@ angular.module('stocksApp')
 
         if (stock.selected) {
             loadStockData(stock);
+            $scope.selectedStocks.push({
+                info: stock,
+                data: {}
+            });
+        } else {
+            $scope.selectedStocks = _.filter($scope.selectedStocks, function(obj) {
+                return obj.info !== stock;
+            });
         }
     };
 

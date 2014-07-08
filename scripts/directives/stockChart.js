@@ -4,7 +4,12 @@ angular.module('stocksApp')
 .directive('stockChart', function() {
 
     var parseData = function(data) {
+        var last = 0;
+        var curr = 0;
         return _.map(data, function(single) {
+            curr = moment(single['Date']) + 0;
+            console.log(curr-last);
+            last = curr;
             return [
                 moment(single['Date']) + 0,
                 parseFloat(single['Adj Close'])
@@ -29,7 +34,7 @@ angular.module('stocksApp')
                 if (typeof data === 'undefined') return;
 
                 var parsedData = parseData(data);
-                console.log(parsedData);
+                // console.log(parsedData);
 
                 element.highcharts('StockChart', {
                     rangeSelector : {
@@ -37,12 +42,18 @@ angular.module('stocksApp')
                         inputEnabled: element.width() > 480
                     },
 
-                    title : {
-                        text : 'AAPL Stock Price'
-                    },
+                    // title : {
+                    //     text : 'AAPL Stock Price'
+                    // },
                     
                     series : [{
-                        name : 'AAPL',
+                        // name : 'AAPL',
+                        data: parsedData,
+                        tooltip: {
+                            valueDecimals: 2
+                        }
+                    }, {
+                        // name : 'AAPL',
                         data: parsedData,
                         tooltip: {
                             valueDecimals: 2

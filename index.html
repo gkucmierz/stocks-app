@@ -57,10 +57,10 @@
 <div class="selected-stocks">
     selected stocks:
     <span
-        ng-repeat=" stock in stockList | filter: {selected:true} "
+        ng-repeat=" stock in selectedStocks "
     >
-        {{ stock.Symbol }}
-        <span class="close" ng-click=" selectStock(stock) ">X</span>
+        {{ stock.info.Symbol }}
+        <span class="close" ng-click=" selectStock(stock.info) ">X</span>
     </span>
 </div>
 

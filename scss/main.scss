@@ -1,6 +1,24 @@
 
 $colorSelectedStock: #0b4;
 
+.stocks-menu {
+    // background: #f99;
+    float: left;
+}
+
+.stock-chart {
+    // display: inline-block;
+    float: left;
+    // background: #fd9;
+    width: 800px;
+}
+
+.selected-stocks {
+    // background: #af9;
+    clear: both;
+    padding: 15px 0;
+}
+
 .stock-list {
     $colorStock: #eee;
     $darkenPrecentage: 8%;

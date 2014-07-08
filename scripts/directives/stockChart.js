@@ -21,19 +21,45 @@ angular.module('stocksApp')
         });
     };
 
+    var sort = function(parsedData) {
+        // this CSV data was not even sorted by date (WTF!)
+        return parsedData.sort(function(itemA, itemB) {
+            return itemA[0] - itemB[0];
+        });
+    };
+
     return {
         restrict: 'A',
         scope: {
-            data: '='
+            selectedStocks: '='
         },
         controller: function() {
         },
         link: function($scope, element) {
 
-            $scope.$watch('data', function(data) {
-                if (typeof data === 'undefined') return;
+            $scope.$watchCollection('selectedStocks', function(selectedStocks) {
+                if (typeof selectedStocks === 'undefined') return;
 
-                var parsedData = parseData(data);
+                var data = [];
+                for(var i =0; i < 1000; i++){
+                    data.push([
+                        i,
+                        Math.sin(i/40)
+                    ]);
+                }
+
+                var series = _.map(selectedStocks, function(selectedStock) {
+                    return {
+                        name: selectedStock.info.Symbol,
+                        data: sort(parseData(selectedStock.data)),
+                        // data: data,
+                        tooltip: {
+                            valueDecimals: 2
+                        }
+                    };
+                });
+
+                // var parsedData = parseData(data);
                 // console.log(parsedData);
 
                 element.highcharts('StockChart', {
@@ -41,24 +67,8 @@ angular.module('stocksApp')
                         selected : 1,
                         inputEnabled: element.width() > 480
                     },
-
-                    // title : {
-                    //     text : 'AAPL Stock Price'
-                    // },
                     
-                    series : [{
-                        // name : 'AAPL',
-                        data: parsedData,
-                        tooltip: {
-                            valueDecimals: 2
-                        }
-                    }, {
-                        // name : 'AAPL',
-                        data: parsedData,
-                        tooltip: {
-                            valueDecimals: 2
-                        }
-                    }]
+                    series : series
                 });
             });
             

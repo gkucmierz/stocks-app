@@ -13,7 +13,10 @@
     <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/lodash/lodash.js"></script>
     <script src="vendor/momentjs/min/moment.min.js"></script>
-    <script src="vendor/highmaps-release/highcharts.js"></script>
+    <!-- move to bower: -->
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+
+
     <script src="vendor/highmaps-release/modules/exporting.js"></script>
 
     <!-- app -->
@@ -35,17 +38,21 @@
 
 <body ng-controller="MainController">
 
-filter: <input type="text" ng-model="filterStocks" />
+<div class="stocks-menu">
+    filter: <input type="text" ng-model="filterStocks" />
 
-<ul class="stock-list">
-    <li
-        ng-repeat=" stock in stockList | filter: {Symbol: filterStocks} "
-        ng-click="selectStock(stock)"
-        ng-class="{ selected: stock.selected }"
-    >
-        {{ stock.Symbol }}
-    </li>
-</ul>
+    <ul class="stock-list">
+        <li
+            ng-repeat=" stock in stockList | filter: {Symbol: filterStocks} "
+            ng-click="selectStock(stock)"
+            ng-class="{ selected: stock.selected }"
+        >
+            {{ stock.Symbol }}
+        </li>
+    </ul>
+</div>
+
+<div stock-chart data="stockData"></div>
 
 <div class="selected-stocks">
     selected stocks:
@@ -57,15 +64,14 @@ filter: <input type="text" ng-model="filterStocks" />
     </span>
 </div>
 
-<div id="container" style="height: 400px; min-width: 310px"></div>
-<div stock-chart data="stockData"></div>
 
+<!-- 
 <ul>
     <li ng-repeat=" row in stockData ">
         {{ row['Date'] }}
         {{ row['Adj Close'] }}
     </li>
-</ul>
+</ul> -->
 
 </body>
 </html>

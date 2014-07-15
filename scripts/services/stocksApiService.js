@@ -66,15 +66,18 @@ angular.module('stocksApp')
             
             var deferred = $q.defer();
 
-            $http({method: 'GET', url: proxy(getUrl + data2url(data)) })
-            .success(function(data) {
-                var jsonData = csvService.parse(data);
-                
-                deferred.resolve(jsonData);
-            })
-            .error(function(err) {
-                deferred.reject(err);
-            });
+            (function loop(){
+                $http({method: 'GET', url: proxy(getUrl + data2url(data)) })
+                .success(function(data) {
+                    var jsonData = csvService.parse(data);
+                        
+                    deferred.resolve(jsonData);
+                })
+                .error(function(err) {
+                    // try again
+                    loop();
+                });
+            })();
 
             return deferred.promise;
         }

@@ -22,7 +22,6 @@ angular.module('stocksApp')
             var deferred = $q.defer();
             // var stocksListUrl = proxy('www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download');
             var stocksListUrl = 'cache/stock-list.csv';
-            proxy('');
 
             $http({method: 'GET', url: stocksListUrl})
             .success(function(data) {

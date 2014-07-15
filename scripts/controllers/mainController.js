@@ -7,8 +7,11 @@ angular.module('stocksApp')
     $scope.selectedStocks = [];
 
     var invokeCollectionWatchers = function(obj) {
-        obj.push('');
-        obj.pop();
+        // ugly hack
+        obj.push(false);
+        setTimeout(function() {
+            obj.pop();
+        }, 0);
     };
 
     var loadStockData = function(selectedStock) {
@@ -39,7 +42,6 @@ angular.module('stocksApp')
     // init
     StocksApiService.getStocksList().then(function(data) {
         $scope.stockList = data;
-        // console.log(data);
     });
 
 });

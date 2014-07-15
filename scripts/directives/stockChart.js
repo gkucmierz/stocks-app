@@ -40,27 +40,16 @@ angular.module('stocksApp')
             $scope.$watchCollection('selectedStocks', function(selectedStocks) {
                 if (typeof selectedStocks === 'undefined') return;
 
-                var data = [];
-                for(var i =0; i < 1000; i++){
-                    data.push([
-                        i,
-                        Math.sin(i/40)
-                    ]);
-                }
-
                 var series = _.map(selectedStocks, function(selectedStock) {
+                    if (!selectedStock) return {};
                     return {
                         name: selectedStock.info.Symbol,
                         data: sort(parseData(selectedStock.data)),
-                        // data: data,
                         tooltip: {
                             valueDecimals: 2
                         }
                     };
                 });
-
-                // var parsedData = parseData(data);
-                // console.log(parsedData);
 
                 element.highcharts('StockChart', {
                     rangeSelector : {

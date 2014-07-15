@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('stocksApp')
-.directive('stockChart', function() {
+.directive('stockChart', function($rootScope) {
 
     var parseData = function(data) {
         var last = 0;
@@ -36,11 +36,8 @@ angular.module('stocksApp')
         },
         link: function($scope, element) {
 
-            $scope.$watchCollection('selectedStocks', function(selectedStocks) {
-                if (typeof selectedStocks === 'undefined') return;
-
+            var updateCharts = function(selectedStocks) {
                 var series = _.map(selectedStocks, function(selectedStock) {
-                    if (!selectedStock) return {};
                     return {
                         name: selectedStock.info.Symbol,
                         data: sort(parseData(selectedStock.data)),
@@ -58,8 +55,11 @@ angular.module('stocksApp')
                     
                     series : series
                 });
-            });
-            
+            };
+
+            $rootScope.$on('selectedStocksUpdate', function(a, passedObj) {
+                updateCharts($scope.selectedStocks);
+            });            
         }
     };
 });

@@ -1,23 +1,15 @@
 'use strict';
 
 angular.module('stocksApp')
-.controller('MainController', function($scope, StocksApiService) {
+.controller('MainController', function($rootScope, $scope, StocksApiService) {
 
     $scope.stockList = [];
     $scope.selectedStocks = [];
 
-    var invokeCollectionWatchers = function(obj) {
-        // ugly hack
-        obj.push(false);
-        setTimeout(function() {
-            obj.pop();
-        }, 0);
-    };
-
     var loadStockData = function(selectedStock) {
         StocksApiService.getHistoricalData(selectedStock.info.Symbol, '1970-01-01').then(function(data) {
             selectedStock.data = data;
-            invokeCollectionWatchers($scope.selectedStocks);
+            $rootScope.$emit('selectedStocksUpdate');
         });
     };
 
@@ -36,6 +28,7 @@ angular.module('stocksApp')
             $scope.selectedStocks = _.filter($scope.selectedStocks, function(obj) {
                 return obj.info !== stock;
             });
+            $rootScope.$emit('selectedStocksUpdate');
         }
     };
 

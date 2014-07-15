@@ -10,13 +10,21 @@ $colorSelectedStock: #0b4;
     // display: inline-block;
     float: left;
     // background: #fd9;
-    width: 800px;
+    width: 700px;
+    padding: 10px;
+}
+
+.company-info {
+    float: left;
+    width: 300px;
+    padding: 10px;
 }
 
 .selected-stocks {
     // background: #af9;
     clear: both;
     padding: 15px 0;
+    padding: 10px;
 }
 
 .stock-list {
@@ -48,6 +56,10 @@ $colorSelectedStock: #0b4;
             }
         }
     }
+}
+
+.company-info {
+    
 }
 
 .selected-stocks {

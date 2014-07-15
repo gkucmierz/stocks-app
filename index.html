@@ -39,7 +39,7 @@
 <body ng-controller="MainController">
 
 <div class="stocks-menu">
-    filter: <input type="text" ng-model="filterStocks" />
+    <input type="text" ng-model="filterStocks" placeholder="filter" />
 
     <ul class="stock-list">
         <li
@@ -52,7 +52,7 @@
     </ul>
 </div>
 
-<div stock-chart class="stock-chart" selected-stocks=" selectedStocks "></div>
+<div stock-chart class="stock-chart" selected-stocks=" selectedStocks ">…</div>
 
 <div class="company-info">
     <h3>company information:</h3>

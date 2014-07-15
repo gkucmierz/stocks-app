@@ -4,19 +4,14 @@ angular.module('stocksApp')
 .directive('stockChart', function($rootScope) {
 
     var parseData = function(data) {
-        var last = 0;
-        var curr = 0;
         return _.map(data, function(single) {
-            curr = moment(single['Date']) + 0;
-            last = curr;
             return [
                 moment(single['Date']) + 0,
-                parseFloat(single['Adj Close'])
+                parseFloat(single.Open),
+                parseFloat(single.High),
+                parseFloat(single.Low) ,
+                parseFloat(single.Close)
             ];
-            return {
-                x: moment(single['Date']) + 0,
-                y: parseFloat(single['Adj Close'])
-            };
         });
     };
 
@@ -43,16 +38,25 @@ angular.module('stocksApp')
                         data: sort(parseData(selectedStock.data)),
                         tooltip: {
                             valueDecimals: 2
-                        }
+                        },
+                        type: 'candlestick'
                     };
                 });
+
+                console.log(series);
 
                 element.highcharts('StockChart', {
                     rangeSelector : {
                         selected : 1,
                         inputEnabled: element.width() > 480
                     },
-                    
+                   
+                    plotOptions: {
+                        series: {
+                            turboThreshold: 0
+                        }
+                    },
+
                     series : series
                 });
             };

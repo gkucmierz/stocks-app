@@ -8,6 +8,8 @@ angular.module('stocksApp').controller('MainController', function(
 
     $scope.stockList = [];
     $scope.selectedStocks = [];
+    $scope.lastSelected = {};
+    $scope.companyProperties = ['Symbol', 'Name', 'LastSale', 'MarketCap', 'ADR TSO', 'IPOyear', 'Sector', 'industry', 'Summary Quote'];
 
     var loadStockData = function(selectedStock) {
         StocksApiService.getHistoricalData(selectedStock.info.Symbol, '1970-01-01').then(function(data) {
@@ -27,11 +29,13 @@ angular.module('stocksApp').controller('MainController', function(
             };
             $scope.selectedStocks.push(selectedStock);
             loadStockData(selectedStock);
+            $scope.lastSelected = stock;
         } else {
             $scope.selectedStocks = _.filter($scope.selectedStocks, function(obj) {
                 return obj.info !== stock;
             });
             $rootScope.$emit('selectedStocksUpdate', $scope.selectedStocks);
+            $scope.lastSelected = {};
         }
     };
 

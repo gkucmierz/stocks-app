@@ -54,6 +54,16 @@
 
 <div stock-chart class="stock-chart" selected-stocks=" selectedStocks "></div>
 
+<div class="company-info">
+    <h3>company information:</h3>
+    <table>
+        <tr ng-repeat=" property in companyProperties ">
+            <td>{{ property }}</td>
+            <td>{{ lastSelected[property] }}</td>
+        </tr>
+    </table>
+</div>
+
 <div class="selected-stocks">
     selected stocks:
     <span

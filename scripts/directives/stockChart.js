@@ -8,7 +8,6 @@ angular.module('stocksApp')
         var curr = 0;
         return _.map(data, function(single) {
             curr = moment(single['Date']) + 0;
-            console.log(curr-last);
             last = curr;
             return [
                 moment(single['Date']) + 0,

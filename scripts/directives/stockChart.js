@@ -57,8 +57,8 @@ angular.module('stocksApp')
                 });
             };
 
-            $rootScope.$on('selectedStocksUpdate', function(a, passedObj) {
-                updateCharts($scope.selectedStocks);
+            $rootScope.$on('selectedStocksUpdate', function(a, selectedStocks) {
+                updateCharts(selectedStocks);
             });            
         }
     };
